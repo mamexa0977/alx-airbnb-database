@@ -88,3 +88,79 @@ After mastering these basic joins, proceed to:
 - Subqueries with joins
 - Aggregate functions with grouped joins
 - Join performance optimization techniques
+
+# Aggregations and Window Functions - ALX Airbnb Database
+
+## Project Overview
+This project demonstrates the use of SQL aggregation functions and advanced window functions for data analysis and reporting in the Airbnb database.
+
+## Query Explanations
+
+### 1. Aggregation with GROUP BY
+**Objective**: Find the total number of bookings made by each user
+
+**Features Used**:
+- `COUNT()`: Count total bookings per user
+- `SUM()`: Calculate total spending per user
+- `AVG()`: Find average booking value
+- `MIN()/MAX()`: Get first and last booking dates
+- `GROUP BY`: Group results by user
+- `HAVING`: Filter groups after aggregation
+
+**Use Case**: Customer behavior analysis and segmentation.
+
+### 2. Window Functions for Ranking
+**Objective**: Rank properties based on total number of bookings
+
+**Window Functions Demonstrated**:
+- `ROW_NUMBER()`: Sequential numbering (no ties)
+- `RANK()`: Ranking with gaps for tied values
+- `DENSE_RANK()`: Ranking without gaps for ties
+- `NTILE()`: Dividing results into quartiles
+
+**Key Difference**: Window functions don't collapse rows like GROUP BY - they compute values for each row while maintaining the original dataset structure.
+
+### 3. Advanced Window Functions
+**Objective**: Calculate running totals and moving averages
+
+**Features**:
+- Running totals with `SUM() OVER()`
+- Moving averages with frame specification
+- Percentage of total calculations
+- Frame clauses: `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`
+
+### 4. PARTITION BY for Segment Analysis
+**Objective**: Analyze user booking patterns within segments
+
+**Features**:
+- `PARTITION BY`: Divide data into user segments
+- Per-user aggregations while maintaining row-level detail
+- Cumulative calculations within partitions
+
+## Key Concepts
+
+### Aggregation Functions
+- Collapse multiple rows into single summary rows
+- Require GROUP BY for non-aggregated columns
+- Useful for summary reports and dashboards
+
+### Window Functions
+- Perform calculations across related rows
+- Maintain individual row visibility
+- Don't require GROUP BY
+- Essential for analytical queries and rankings
+
+## Performance Considerations
+
+1. **Window functions** are generally efficient but can be memory-intensive on large datasets
+2. **Proper indexing** on ORDER BY columns in window functions
+3. **PARTITION BY** columns should be indexed for better performance
+4. Consider **query complexity** when using multiple window functions
+
+## Real-World Applications
+
+- Customer lifetime value analysis
+- Property performance rankings
+- Revenue trend analysis
+- User behavior segmentation
+- Booking pattern identification
